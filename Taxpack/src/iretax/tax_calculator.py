@@ -12,13 +12,13 @@ class TaxCalculator:
         # Determine tax brackets based on user's situation
         if self.marital_status == 'single':
             if self.single_parent:
-                rate_bracket = 44000
+                rate_bracket = 48000
             else:
-                rate_bracket = 40000
+                rate_bracket = 44000
         elif self.marital_status == 'married':
-            rate_bracket = 49000
+            rate_bracket = 53000
             if self.both_earning:
-                rate_bracket += min(self.income, 31000)
+                rate_bracket += min(self.income, 35000)
         else:
             print("Invalid marital status. Please enter either 'single' or 'married'.")
             return
@@ -35,12 +35,12 @@ class TaxCalculator:
         # Calculate Universal Social Charge
         if self.income <= 12012:
             self.usc_deducted = self.income * 0.005
-        elif self.income <= 22920:  # 12012 + 10908
+        elif self.income <= 27382:  # 12012 + 15370
             self.usc_deducted = 12012 * 0.005 + (self.income - 12012) * 0.02
-        elif self.income <= 76044:  # 22920 + 47124
-            self.usc_deducted = 12012 * 0.005 + 10908 * 0.02 + (self.income - 22920) * 0.045
+        elif self.income <= 70044:  # 27382 + 42662
+            self.usc_deducted = 12012 * 0.005 + 15370 * 0.02 + (self.income - 27382) * 0.03
         else:
-            self.usc_deducted = 12012 * 0.005 + 10908 * 0.02 + 47124 * 0.045 + (self.income - 76044) * 0.08
+            self.usc_deducted = 12012 * 0.005 + 15370 * 0.02 + 42662 * 0.03 + (self.income - 70044) * 0.08
 
         return self.usc_deducted
 
